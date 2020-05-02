@@ -13,6 +13,13 @@
 			</div>
 			<hr>
 			<div class="button pill black" onclick="bluetooth.toggleDiscoverable();" id="bluetooth-discovery-button">Start Bluetooth Pairing</div>
+			
+			<div class="menu-item toggle" id="bluetooth-pin-toggle" onclick="bluetooth.toggleUsePinForBluetooth();">
+				<div class="menu-label">Use PIN</div>
+				<div class="menu-toggle"></div>
+			</div>
+			<div id="bluetooth-change-pin" class="button pill grey disabled" onclick="bluetooth.setBluetoothPin();">Change PIN…</div>
+			
 			<div class="menu-item" id="bluetooth-pairing-mode" onclick="beo.ask('bluetooth-pairing-mode-prompt');">
 				<div class="menu-label">Open for Pairing</div>
 				<div class="menu-value"></div>
@@ -42,6 +49,16 @@
 		<p>Changing this setting will interrupt music playing over Bluetooth and disconnect devices.</p>
 		<div class="ask-buttons">
 			<div class="button pill black cancel default" onclick="beo.ask();">Cancel</div>
+		</div>
+	</div>
+
+	<div class="ask-menu" id="disable-bluetooth-pin-prompt">
+		<h2>Disable Bluetooth PIN</h2>
+		<p>Active Bluetooth sources will be disconnected to restart Bluetooth services.</p>
+		<div class="ask-buttons">
+			
+			<div class="button pill black default" onclick="bluetooth.disableBluetoothPin();">Disable PIN</div>
+			<div class="button pill grey cancel" onclick="beo.ask();">Cancel</div>
 		</div>
 	</div>
 </div>

@@ -29,7 +29,9 @@ var fs = require("fs");
 	var settings = {
 		bluetoothEnabled: false,
 		bluetoothDiscoverable: false,
-		pairingMode: null
+		pairingMode: null,
+		usesPin: false
+		
 	};
 	var configuration = {};
 	
@@ -105,6 +107,18 @@ var fs = require("fs");
 				});
 			}
 		
+		}
+
+		if (event.header == "setPin") {
+			// If pin field is set, change pin. Otherwise remove it.
+			if (event.content.pin != false) {
+				//TODO: configureShairportSync("general", "password", event.content.password, true);
+				beo.bus.emit("ui", {target: "bluetooth", header: "usesPin", content: {usesPin: true}});
+			} else {
+				//TODO: configureShairportSync("general", "password", null, true);
+				beo.bus.emit("ui", {target: "bluetooth", header: "usesPin", content: {usesPin: false}});
+			}
+			
 		}
 
 		if (event.header == "bluetoothDiscoverable") {			
